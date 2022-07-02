@@ -5,26 +5,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>Calc Tozems</title>
 </head>
 
 <body>
+    <div class="wrapper">
+        <div class="title">Profit from deposits</div>
+        <form id="main_form" action="#">
+            <input autofocus type="number" max="1000000" name="" id="count" value="50">
+            <select class="num" name="Level" id="level">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+            </select>
+            <input class="btn" type="submit" value="enter">
+        </form>
 
-    <form id="main_form" action="#">
-        <input type="number" name="" id="count" value="50">
-        <select name="Level" id="level">
-            <option name="" id="">1</option>
-            <option name="" id="">2</option>
-            <option name="" id="">3</option>
-        </select>
-        <input type="submit" value="enter">
-    </form>
+        <p class="total_result">Total profit: $<span id="count_total">53.5</span></p>
 
-    <p>total: $<span id="count_total">53.5</span></p>
+        <script src="./index.js"></script>
+        <script>
+        </script>
 
-    <script src="./index.js"></script>
-    <script>
-    </script>
+    </div>
 </body>
 
 </html>

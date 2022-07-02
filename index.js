@@ -4,6 +4,7 @@ const formResult = document.getElementById('count_total');
 const level = document.getElementById('level');
 let depositIndex = '';
 let depositLevel = '';
+let countRes = 0;
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     checker(formCount);
@@ -126,9 +127,12 @@ function thirdLevel(invest, depIndex, level) {
 
 
 function calcProfit(invest, percent, days, lv) {
+    countRes;
     if (+lv === 1 || +lv === 2) {
-        Math.floor(formResult.textContent = (invest * ((percent * days) / 100)) + invest).toFixed(2);
+        Math.floor(countRes = (invest * ((percent * days) / 100)) + invest);
+        formResult.textContent = countRes.toFixed(2);
     } else if (+lv === 3) {
-        Math.floor(formResult.textContent = (invest * ((percent * days) / 100))).toFixed(2);
+        Math.floor(countRes = (invest * ((percent * days) / 100)));
+        formResult.textContent = countRes.toFixed(2);
     }
 }

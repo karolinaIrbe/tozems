@@ -1,10 +1,14 @@
 const form = document.getElementById('main_form');
 const formCount = document.getElementById('count');
-const formResult = document.getElementById('count_total');
+const formResult = document.querySelector('.count_total');
 const level = document.getElementById('level');
+const resultContainer = document.querySelector('.result_container');
+const table = document.querySelector(".iksweb");
 let depositIndex = '';
 let depositLevel = '';
 let countRes = 0;
+let dayRes = 0;
+let mesRes = 0;
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     checker(formCount);
@@ -26,7 +30,6 @@ function checker(count) {
     } else if (count.value >= 50000) {
         depositIndex = 6;
     }
-
     depositLevel = level.value;
     calc(+count.value, +depositIndex, +depositLevel);
 }
@@ -43,7 +46,6 @@ function calc(invest, count, lev) {
 }
 
 function oneLevel(invest, depIndex, level) {
-    formResult.textContent = '';
     switch (depIndex) {
         case 1:
             calcProfit(invest, 0.5, 14, level);
@@ -70,7 +72,6 @@ function oneLevel(invest, depIndex, level) {
 }
 
 function secondLevel(invest, depIndex, level) {
-    formResult.textContent = '';
     switch (depIndex) {
         case 1:
             calcProfit(invest, 1.0, 285, level);
@@ -94,12 +95,10 @@ function secondLevel(invest, depIndex, level) {
         default:
             break;
     }
-
 }
 
 
 function thirdLevel(invest, depIndex, level) {
-    formResult.textContent = '';
     switch (depIndex) {
         case 1:
             calcProfit(invest, 1.4, 365, +level);
@@ -128,11 +127,66 @@ function thirdLevel(invest, depIndex, level) {
 
 function calcProfit(invest, percent, days, lv) {
     countRes;
-    if (+lv === 1 || +lv === 2) {
+    dayRes;
+    mesRes;
+    // table.innerHTML = ``;
+    if (+lv === 1) {
+        Math.floor(dayRes = (invest * ((percent * 1) / 100 )));
         Math.floor(countRes = (invest * ((percent * days) / 100)) + invest);
-        formResult.textContent = countRes.toFixed(2);
-    } else if (+lv === 3) {
+        table.innerHTML = 
+        `
+            <tbody>
+                <tr>
+                    <td>Income per day</td>
+                    <td>Total income</td>
+                </tr>
+                <tr>
+                    <td>$<span>${dayRes.toFixed(2)}</span></td>
+                    <td>$<span class="count_total">${countRes.toFixed(2)}</span></td>
+                </tr>
+            </tbody>
+        `
+    }
+    else if (+lv === 2) {
+        Math.floor(dayRes = (invest * ((percent * 1) / 100 )));
+        Math.floor(mesRes = (invest * ((percent * 31) / 100 )));
+        Math.floor(countRes = (invest * ((percent * days) / 100)) + invest);
+        table.innerHTML = 
+        `
+            <tbody>
+                <tr>
+                    <td>Income per day</td>
+                    <td>Monthly income</td>
+                    <td>Total income</td>
+                </tr>
+                <tr>
+                    <td>$<span>${dayRes.toFixed(2)}</span></td>
+                    <td>$<span>${mesRes.toFixed(2)}</span></td>
+                    <td>$<span class="count_total">${countRes.toFixed(2)}</span></td>
+                </tr>
+                </tbody>
+        `
+    }
+    else if (+lv === 3) {
+        Math.floor(dayRes = (invest * ((percent * 1) / 100 )));
+        Math.floor(mesRes = (invest * ((percent * 31) / 100 )));
         Math.floor(countRes = (invest * ((percent * days) / 100)));
-        formResult.textContent = countRes.toFixed(2);
+        table.innerHTML = 
+        `
+            <tbody>
+                <tr>
+                    <td>Income per day</td>
+                    <td>Monthly income</td>
+                    <td>Total income</td>
+                </tr>
+                <tr>
+                    <td>$<span>${dayRes.toFixed(2)}</span></td>
+                    <td>$<span>${mesRes.toFixed(2)}</span></td>
+                    <td>$<span class="count_total">${countRes.toFixed(2)}</span></td>
+                </tr>
+            </tbody>
+        `
     }
 }
+
+// (invest * ((precent * 1) / 100 ))

@@ -318,5 +318,6 @@ table.iksweb th {
     table.iksweb th {
         padding: 10px;
         font-size: 25px;
+        vertical-align: baseline;
     }
 }
